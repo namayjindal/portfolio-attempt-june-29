@@ -8,12 +8,15 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    flex-direction: column;
 }
 
 nav {
     position: absolute;
     top: 20px;
     right: 20px;
+    padding: 50px;
+    padding-left: 50px;
 }
 
 nav a {
@@ -32,7 +35,8 @@ nav a:hover {
 }
 
 .intro {
-    max-width: 500px;
+    max-width: 600px;
+    position: relative;
 }
 
 .dot {
@@ -41,10 +45,18 @@ nav a:hover {
     background-color: #fff;
     border-radius: 50%;
     display: inline-block;
+    position: absolute;
+    top: 30%;
+    left: 0px; /* Adjust this value to place the dot where you want */
+    transform: translateY(-50%);
+}
+
+.typing-container {
+    display: inline-block;
 }
 
 h1 {
-    font-size: 3.5em;
+    font-size: 3em;
     margin: 0.5em 0;
 }
 
@@ -58,16 +70,20 @@ h1 {
     text-decoration: underline;
 }
 
-body {
-    font-family: 'Roboto', sans-serif;
-    font-size: large;
+#typing-animation {
+    display: inline-block;
+    overflow: hidden;
+    border-right: 0.15em solid #fff;
+    white-space: nowrap;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
 }
 
-.intro h1 {
-    font-family: 'Roboto', sans-serif;
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
 }
 
-.intro h1#devanagari {
-    font-family: 'Noto Sans Devanagari', sans-serif;
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: #fff; }
 }
-
