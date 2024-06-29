@@ -9,6 +9,8 @@ body {
     align-items: center;
     height: 100vh;
     flex-direction: column;
+    font-size: large;
+    padding-bottom: 50px;
 }
 
 nav {
@@ -34,25 +36,42 @@ nav a:hover {
     text-align: center;
 }
 
-.intro {
-    max-width: 600px;
-    position: relative;
-}
-
 .dot {
     height: 20px;
     width: 20px;
     background-color: #fff;
     border-radius: 50%;
-    display: inline-block;
-    position: absolute;
-    top: 30%;
-    left: 0px; /* Adjust this value to place the dot where you want */
-    transform: translateY(-50%);
+    display: block;
+    margin: 0 auto 20px;
+    animation: twitch 0.5s ease-in-out infinite alternate;
+    cursor: pointer;
+    position: absolute; /* Changed from fixed to absolute */
+    z-index: 1000;
+}
+
+@keyframes twitch {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(2px, 2px); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(100px, -50px); }
+    50% { transform: translate(-50px, 100px); }
+    75% { transform: translate(75px, 75px); }
+}
+
+.intro {
+    max-width: 600px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .typing-container {
     display: inline-block;
+    padding-top: 20px;
 }
 
 h1 {
@@ -60,22 +79,32 @@ h1 {
     margin: 0.5em 0;
 }
 
+.contacts {
+    margin-top: 40px; /* Increase this value to add more space */
+}
+
 .contacts a {
     color: #fff;
     margin: 0 10px;
     text-decoration: none;
+    position: relative;
+    padding-right: 15px; /* Make space for the arrow */
 }
 
-.contacts a:hover {
-    text-decoration: underline;
+.contacts a::after {
+    content: '→';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8em; /* Make the arrow smaller */
 }
 
 #typing-animation {
+    font-family: 'Roboto', sans-serif;
     display: inline-block;
     overflow: hidden;
-    border-right: 0.15em solid #fff;
     white-space: nowrap;
-    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
 }
 
 @keyframes typing {
