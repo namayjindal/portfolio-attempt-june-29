@@ -7,9 +7,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     flex-direction: column;
-    font-size: large;
+    font-size: 1.3em;
     padding-bottom: 50px;
 }
 
@@ -27,7 +27,6 @@ nav {
     top: 20px;
     right: 20px;
     padding: 50px;
-    padding-left: 50px;
 }
 
 nav a {
@@ -43,6 +42,9 @@ nav a:hover {
 
 .container {
     text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 .dot {
@@ -54,7 +56,7 @@ nav a:hover {
     margin: 0 auto 20px;
     animation: twitch 0.5s ease-in-out infinite alternate;
     cursor: pointer;
-    position: absolute; /* Changed from fixed to absolute */
+    position: absolute;
     z-index: 1000;
 }
 
@@ -89,7 +91,7 @@ h1 {
 }
 
 .contacts {
-    margin-top: 40px; /* Increase this value to add more space */
+    margin-top: 40px;
 }
 
 .contacts a {
@@ -97,7 +99,7 @@ h1 {
     margin: 0 10px;
     text-decoration: none;
     position: relative;
-    padding-right: 15px; /* Make space for the arrow */
+    padding-right: 15px;
 }
 
 .contacts a::after {
@@ -106,7 +108,7 @@ h1 {
     right: 0;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 0.8em; /* Make the arrow smaller */
+    font-size: 0.8em;
 }
 
 #typing-animation {
@@ -124,4 +126,55 @@ h1 {
 @keyframes blink-caret {
     from, to { border-color: transparent; }
     50% { border-color: #fff; }
+}
+
+/* New styles for about page */
+.about-content {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2em;
+    text-align: left;
+}
+
+.profile-picture {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 2em;
+}
+
+.about-text {
+    flex: 1;
+}
+
+.spotify-section, .photo-gallery {
+    margin-top: 3em;
+}
+
+#vsco-embed {
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    body {
+        font-size: 1em;
+    }
+
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-picture {
+        margin-right: 0;
+        margin-bottom: 1em;
+    }
+
+    .container {
+        padding: 10px;
+    }
 }
