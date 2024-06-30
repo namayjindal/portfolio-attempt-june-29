@@ -41,8 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Speed control
     const speed = 3; // Constant speed
-    const avoidanceRadius = 150; // Radius around the mouse where the ball will avoid
-    const avoidanceStrength = 0.8; // Increased for more noticeable avoidance
+    const clickRadius = 150; // Radius around the ball for click detection
 
     function initPosition() {
         const rect = dot.getBoundingClientRect();
@@ -53,27 +52,8 @@ document.addEventListener("DOMContentLoaded", () => {
         dy = Math.sin(angle) * speed;
     }
 
-    function animate(mouseX, mouseY) {
+    function animate() {
         if (!isAnimating) return;
-
-        // Calculate distance from mouse to ball
-        const distX = x - mouseX;
-        const distY = y - mouseY;
-        const distance = Math.sqrt(distX * distX + distY * distY);
-
-        // If mouse is too close, adjust velocity to move away
-        if (distance < avoidanceRadius) {
-            const angle = Math.atan2(distY, distX);
-            const avoidX = Math.cos(angle) * avoidanceStrength;
-            const avoidY = Math.sin(angle) * avoidanceStrength;
-            dx += avoidX;
-            dy += avoidY;
-
-            // Normalize speed after avoidance
-            const currentSpeed = Math.sqrt(dx * dx + dy * dy);
-            dx = (dx / currentSpeed) * speed;
-            dy = (dy / currentSpeed) * speed;
-        }
 
         x += dx;
         y += dy;
@@ -93,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
         dot.style.left = `${x - 10}px`;
         dot.style.top = `${y - 10}px`;
 
-        animationId = requestAnimationFrame(() => animate(mouseX, mouseY));
+        animationId = requestAnimationFrame(animate);
     }
 
     function changeColor() {
@@ -101,15 +81,13 @@ document.addEventListener("DOMContentLoaded", () => {
         dot.style.backgroundColor = colors[currentColorIndex];
     }
 
-    let mouseX = -1000, mouseY = -1000; // Initialize mouse position off-screen
-
     function startAnimation() {
         if (!isAnimating) {
             isAnimating = true;
             initPosition();
             dot.style.animation = 'none';
             dot.style.position = 'fixed';
-            animate(mouseX, mouseY);
+            animate();
         }
     }
 
@@ -120,12 +98,26 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    function handleMouseMove(event) {
-        mouseX = event.clientX;
-        mouseY = event.clientY;
+    function changeDirection() {
+        const angle = Math.random() * 2 * Math.PI;
+        dx = Math.cos(angle) * speed;
+        dy = Math.sin(angle) * speed;
+        changeColor();
     }
 
     dot.addEventListener('mouseenter', startAnimation);
+
+    window.addEventListener('click', (event) => {
+        if (isAnimating) {
+            const dx = event.clientX - x;
+            const dy = event.clientY - y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance <= clickRadius) {
+                changeDirection();
+            }
+        }
+    });
+    
     window.addEventListener('resize', handleResize);
-    window.addEventListener('mousemove', handleMouseMove);
 });
