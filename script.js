@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Typing animation
+    // Typing animation (unchanged)
     const element = document.getElementById('typing-animation');
     const text = "hi, i'm namay ";
     let index = 0;
@@ -29,18 +29,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
     type();
 
-    // Dot animation
+    // Dot animation (modified)
     const dot = document.querySelector('.dot');
     let isAnimating = false;
     let animationId;
     let x, y, dx, dy;
 
+    // Define color array (replace with your desired hex codes)
+    const colors = ['#8AFAFF', '#FEB625', '#E63946', '#FFFF00', '#DAFF7D', '#02CDAE'];
+    let currentColorIndex = 0;
+
+    // Speed control
+    const minSpeed = 1;
+    const maxSpeed = 4;
+
+    function getRandomSpeed() {
+        return Math.random() * (maxSpeed - minSpeed) + minSpeed;
+    }
+
     function initPosition() {
         const rect = dot.getBoundingClientRect();
         x = rect.left;
         y = rect.top;
-        dx = (Math.random() - 0.5) * 17; // Increased speed
-        dy = (Math.random() - 0.5) * 17; // Increased speed
+        dx = getRandomSpeed() * (Math.random() > 0.5 ? 1 : -1);
+        dy = getRandomSpeed() * (Math.random() > 0.5 ? 1 : -1);
     }
 
     function animate() {
@@ -49,20 +61,27 @@ document.addEventListener("DOMContentLoaded", () => {
         x += dx;
         y += dy;
 
-        // Bounce off edges
+        // Bounce off edges and change color
         if (x <= 0 || x >= window.innerWidth - 20) {
             dx = -dx;
             x = Math.max(0, Math.min(x, window.innerWidth - 20));
+            changeColor();
         }
         if (y <= 0 || y >= window.innerHeight - 20) {
             dy = -dy;
             y = Math.max(0, Math.min(y, window.innerHeight - 20));
+            changeColor();
         }
 
         dot.style.left = `${x}px`;
         dot.style.top = `${y}px`;
 
         animationId = requestAnimationFrame(animate);
+    }
+
+    function changeColor() {
+        currentColorIndex = (currentColorIndex + 1) % colors.length;
+        dot.style.backgroundColor = colors[currentColorIndex];
     }
 
     function startAnimation() {
