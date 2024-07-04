@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentColorIndex = 0;
 
     // Speed control
-    const speed = 3; // Constant speed
+    const speed = 7; // Constant speed
     const clickRadius = 150; // Radius around the ball for click detection
 
     function initPosition() {
