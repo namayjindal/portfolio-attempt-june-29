@@ -74,7 +74,7 @@ h1 {
 
 .project-card img {
     width: 100%;
-    height: 200px; /* Increased height for better visibility */
+    height: 350px; /* Increased height for better visibility */
     object-fit: cover;
 }
 
