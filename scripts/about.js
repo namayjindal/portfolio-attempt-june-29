@@ -24,13 +24,13 @@ function loadVSCOEmbed() {
 // Spotify Embed
 function loadSpotifyEmbed() {
     // You'll need to regularly update this with your current top track
-    const spotifyTrackId = '12BaQt9aYdTlEtKreqB5V4'; // Example track ID
-    const embedCode = `<iframe src="https://open.spotify.com/embed/track/${spotifyTrackId}" width="400" height="100" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`;
+    const spotifyPlaylistId = '2yWXBmpJWZzLiPzpNwnNDJ'; // Example track ID
+    const embedCode = `<iframe src="https://open.spotify.com/embed/playlist/${spotifyPlaylistId}" width="800" height="600" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`;
     document.getElementById('spotify-embed').innerHTML = embedCode;
 }
 
 // Call these functions when the page loads
 window.onload = function() {
-    loadVSCOEmbed();
+    // loadVSCOEmbed();
     loadSpotifyEmbed();
 };
