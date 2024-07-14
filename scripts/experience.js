@@ -13,4 +13,22 @@ document.addEventListener('DOMContentLoaded', () => {
         cursor.style.left = e.clientX + 'px';
         cursor.style.top = e.clientY + 'px';
     });
+
+    const experienceItems = document.querySelectorAll('.experience-item');
+    const navHeight = document.querySelector('nav').offsetHeight;
+
+    function checkFade() {
+        experienceItems.forEach(item => {
+            const itemTop = item.getBoundingClientRect().top;
+            if (itemTop < navHeight + 10) {
+                item.classList.add('fade-out');
+            } else {
+                item.classList.remove('fade-out');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', checkFade);
+    checkFade(); // Initial check
+
 });
