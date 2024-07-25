@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentColorIndex = 0;
 
     // Speed control
-    const speed = 7; // Constant speed
+    const speed = 4; // Constant speed
     const clickRadius = 150; // Radius around the ball for click detection
 
     function initPosition() {
@@ -134,6 +134,20 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener('mousemove', (e) => {
         cursor.style.left = e.clientX + 'px';
         cursor.style.top = e.clientY + 'px';
+    });
+
+    const hamburger = document.querySelector('.hamburger-menu');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+
+    // Close menu when a link is clicked
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+        });
     });
     
 });
