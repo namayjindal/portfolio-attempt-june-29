@@ -212,3 +212,141 @@ body::before {
         max-width: 90%;
     }
 }
+
+/* Media query for tablets and smaller screens */
+@media screen and (max-width: 1024px) {
+    .experience-container {
+        padding-top: 100px;
+    }
+
+    .experience-content {
+        flex-direction: column;
+    }
+
+    .experience-item:nth-child(even) .experience-content {
+        flex-direction: column;
+    }
+
+    .experience-content img {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        margin: 0 0 20px 0;
+        padding: 0;
+    }
+
+    .experience-text {
+        max-width: 100%;
+    }
+
+    .experience-text h2,
+    .experience-text p {
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+/* Media query for mobile devices */
+@media screen and (max-width: 768px) {
+    body {
+        padding-top: 60px;
+        font-size: 1em;
+    }
+
+    .top-left-image {
+        width: 60px;
+        height: 60px;
+        padding: 10px;
+        top: 5px;
+        left: 5px;
+    }
+
+    nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: #000;
+        padding: 10px;
+    }
+
+    .hamburger-menu {
+        display: block;
+        top: 15px;
+        right: 15px;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #000;
+        padding: 10px;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links a {
+        margin: 10px 0;
+    }
+
+    .experience-container {
+        padding-top: 80px;
+    }
+
+    .experience-item {
+        margin-bottom: 50px;
+    }
+
+    .experience-content img {
+        max-width: 200px;
+    }
+
+    .experience-text h2 {
+        font-size: 1.2em;
+    }
+
+    .experience-text p {
+        font-size: 0.9em;
+    }
+
+    body::before {
+        height: 80px;
+    }
+}
+
+/* Additional styles for very small screens */
+@media screen and (max-width: 480px) {
+    .experience-content img {
+        max-width: 150px;
+    }
+
+    .experience-text h2 {
+        font-size: 1.1em;
+    }
+
+    .experience-text p {
+        font-size: 0.8em;
+    }
+}
+
+.experience-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.experience-item.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.experience-item.fade-out {
+    opacity: 0;
+    transform: translateY(20px);
+}

@@ -18,12 +18,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const navHeight = document.querySelector('nav').offsetHeight;
 
     function checkFade() {
+        const scrollPosition = window.pageYOffset;
         experienceItems.forEach(item => {
-            const itemTop = item.getBoundingClientRect().top;
-            if (itemTop < navHeight + 10) {
-                item.classList.add('fade-out');
-            } else {
+            const itemTop = item.offsetTop - scrollPosition;
+            if (itemTop < window.innerHeight * 0.75) {
+                item.classList.add('fade-in');
                 item.classList.remove('fade-out');
+            } else {
+                item.classList.remove('fade-in');
+                item.classList.add('fade-out');
             }
         });
     }
