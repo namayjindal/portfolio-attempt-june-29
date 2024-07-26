@@ -318,6 +318,15 @@ body::before {
     body::before {
         height: 80px;
     }
+
+    /* Hide custom cursor on mobile devices */
+    .custom-cursor-page {
+        cursor: default;
+    }
+
+    .custom-cursor {
+        display: none;
+    }
 }
 
 /* Additional styles for very small screens */
@@ -332,6 +341,15 @@ body::before {
 
     .experience-text p {
         font-size: 0.8em;
+    }
+
+    /* Hide custom cursor on mobile devices */
+    .custom-cursor-page {
+        cursor: default;
+    }
+
+    .custom-cursor {
+        display: none;
     }
 }
 

@@ -242,4 +242,13 @@ h1 {
         height: 700px; /* Adjust height as needed */
     }
 
+    /* Hide custom cursor on mobile devices */
+    .custom-cursor-page {
+        cursor: default;
+    }
+
+    .custom-cursor {
+        display: none;
+    }
+
 }

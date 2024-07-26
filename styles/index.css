@@ -228,5 +228,14 @@ h1 {
     .intro {
         max-width: 90%;
     }
+
+    /* Hide custom cursor on mobile devices */
+    .custom-cursor-page {
+        cursor: default;
+    }
+
+    .custom-cursor {
+        display: none;
+    }
 }
 
